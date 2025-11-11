@@ -16,6 +16,16 @@ def search_pokemon():
     if resp.status_code == 200:
         pokemon_data = resp.json()
         return render_template('pokemon.html',pokemon=pokemon_name)
+    pokrmon_info = {
+        'name': pokemon_data['name'],
+        'id': pokemon_data['id'],
+        'height': pokemon_data['height'],
+        'weight': pokemon_data['weight'],
+        'types': [t['type']['name'] for t in pokemon_data['types']],
+        'abilities': [a['ability']['name'] for a in pokemon_data['abilities']],
+        'sprite': pokemon_data['sprites']['front_default'],
+        'stats': {}
+    }
 
 
 if __name__ == '__main__':
